@@ -5,11 +5,36 @@ namespace Deimos\Builder;
 class Builder
 {
 
+    /**
+     * @var array
+     */
+    protected $instances = [];
+
+    /**
+     * @param string $name
+     *
+     * @return bool
+     */
+    protected function hasInstance($name)
+    {
+        return isset($this->instances[$name]);
+    }
+
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
     protected function instance($name)
     {
-        $methodName = 'build' . ucfirst($name);
+        if (!$this->hasInstance($name))
+        {
+            $methodName = 'build' . ucfirst($name);
 
-        return $this->{$methodName}();
+            $this->instances[$name] = $this->{$methodName}();
+        }
+
+        return $this->instances[$name];
     }
 
 }
