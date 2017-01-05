@@ -63,13 +63,23 @@ class Builder
     /**
      * @param callable $callable
      *
+     * @return string
+     */
+    private function hash(callable $callable)
+    {
+        $reflection = new \ReflectionFunction($callable);
+
+        return crc32($reflection);
+    }
+
+    /**
+     * @param callable $callable
+     *
      * @return mixed
      */
     protected function once(callable $callable)
     {
-        $hash = \spl_object_hash((object)$callable);
-
-        return $this->objectBuild($hash, $callable);
+        return $this->objectBuild($this->hash($callable), $callable);
     }
 
 }
