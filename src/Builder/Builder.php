@@ -11,6 +11,16 @@ class Builder
     protected $instances = [];
 
     /**
+     * @param $name
+     *
+     * @return string
+     */
+    protected function methodName($name)
+    {
+        return 'build' . ucfirst($name);
+    }
+
+    /**
      * @param string $name
      *
      * @return bool
@@ -45,7 +55,9 @@ class Builder
      */
     protected function instance($name)
     {
-        return $this->objectBuild($name, 'build' . ucfirst($name));
+        $methodName = $this->methodName($name);
+
+        return $this->objectBuild($name, $methodName);
     }
 
     /**
