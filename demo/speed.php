@@ -48,7 +48,7 @@ $s2 = new S2();
 
 function mt(S $s)
 {
-    $range = range(1, 100);
+    $range = range(1, 10);
 
     $mt = microtime(true);
 
@@ -66,6 +66,6 @@ function mt(S $s)
     return microtime(true) - $mt;
 }
 
-// banchmark
+// benchmark
 var_dump(mt($s1));
 var_dump(mt($s2));
