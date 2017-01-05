@@ -74,12 +74,18 @@ class Builder
 
     /**
      * @param callable $callable
+     * @param string   $udId
      *
      * @return mixed
      */
-    protected function once(callable $callable)
+    protected function once(callable $callable, $udId = null)
     {
-        return $this->objectBuild($this->hash($callable), $callable);
+        if (!$udId)
+        {
+            $udId = $this->hash($callable);
+        }
+
+        return $this->objectBuild($udId, $callable);
     }
 
 }
