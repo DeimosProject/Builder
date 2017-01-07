@@ -2,12 +2,12 @@
 
 include_once __DIR__ . '/../vendor/autoload.php';
 
-interface S
+interface RandomInterface
 {
     public function rand();
 }
 
-class S1 extends \Deimos\Builder\Builder implements S
+class Random1 extends \Deimos\Builder\Builder implements RandomInterface
 {
 
     /**
@@ -25,7 +25,7 @@ class S1 extends \Deimos\Builder\Builder implements S
 
 }
 
-class S2 extends \Deimos\Builder\Builder implements S
+class Random2 extends \Deimos\Builder\Builder implements RandomInterface
 {
 
     /**
@@ -43,29 +43,29 @@ class S2 extends \Deimos\Builder\Builder implements S
 
 }
 
-$s1 = new S1();
-$s2 = new S2();
+$random1 = new Random1();
+$random2 = new Random2();
 
-function mt(S $s)
+function run(RandomInterface $sObject)
 {
     $range = range(1, 10);
 
-    $mt = microtime(true);
+    $microTime = microtime(true);
 
     foreach ($range as $value1)
     {
-        foreach ($range as $value2)
+        foreach (range($value1, 10) as $value2)
         {
-            foreach ($range as $value3)
+            foreach (range($value2, 10) as &$value3)
             {
-                $s->rand();
+                $value3 = $sObject->rand();
             }
         }
     }
 
-    return microtime(true) - $mt;
+    return microtime(true) - $microTime;
 }
 
 // benchmark
-var_dump(mt($s1));
-var_dump(mt($s2));
+var_dump(run($random1));
+var_dump(run($random2));
