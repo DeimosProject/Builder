@@ -37,7 +37,7 @@ class Builder
      */
     private function init($method)
     {
-        if (method_exists($this, $method))
+        if (is_string($method) && method_exists($this, $method))
         {
             return $this->$method();
         }
