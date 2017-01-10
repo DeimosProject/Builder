@@ -31,6 +31,21 @@ class Builder
     }
 
     /**
+     * @param $method
+     *
+     * @return mixed
+     */
+    private function init($method)
+    {
+        if (method_exists($this, $method))
+        {
+            return $this->$method();
+        }
+
+        return $method();
+    }
+
+    /**
      * init method
      *
      * @param string          $name
@@ -42,7 +57,7 @@ class Builder
     {
         if (!$this->hasInstance($name))
         {
-            $this->instances[$name] = call_user_func($method);
+            $this->instances[$name] = $this->init($method);
         }
 
         return $this->instances[$name];
