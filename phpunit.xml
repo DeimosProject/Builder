@@ -2,7 +2,7 @@
 
     <testsuites>
         <testsuite name="Builder">
-            <directory>tests/Test/Builder</directory>
+            <directory>tests/Test</directory>
         </testsuite>
     </testsuites>
 
