@@ -1,5 +1,5 @@
 build:
-   environment:
+  environment:
      php:
        version:
         - 5.6
