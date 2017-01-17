@@ -53,7 +53,7 @@ class Builder
      *
      * @return mixed
      */
-    private function objectBuild($name, $method)
+    protected function objectBuild($name, $method)
     {
         if (!$this->hasInstance($name))
         {
