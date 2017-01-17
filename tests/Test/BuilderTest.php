@@ -45,4 +45,10 @@ class BuilderTest extends TestsSetUp
         );
     }
 
+    public function testMethodExists()
+    {
+        $this->assertTrue($this->builder->methodExists('test'));
+        $this->assertFalse($this->builder->methodExists('test1111'));
+    }
+
 }

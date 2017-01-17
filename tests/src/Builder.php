@@ -38,6 +38,11 @@ class Builder extends \Deimos\Builder\Builder
         return new static();
     }
 
+    public function methodExists($name)
+    {
+        return parent::methodExists($name);
+    }
+
     public function test()
     {
         return $this->instance('test');

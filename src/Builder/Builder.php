@@ -36,6 +36,16 @@ class Builder
     }
 
     /**
+     * @param $name
+     *
+     * @return bool
+     */
+    protected function methodExists($name)
+    {
+        return method_exists($this, $this->methodName($name));
+    }
+
+    /**
      * @param $method
      *
      * @return mixed
