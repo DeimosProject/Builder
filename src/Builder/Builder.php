@@ -11,13 +11,18 @@ class Builder
     protected $instances = [];
 
     /**
+     * @var string
+     */
+    protected $methodName = 'build';
+
+    /**
      * @param $name
      *
      * @return string
      */
     protected function methodName($name)
     {
-        return 'build' . ucfirst($name);
+        return $this->methodName . ucfirst($name);
     }
 
     /**
